@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core'
-import {AnalyticsService} from '../shared/services/analytics.service'
-import {Observable} from 'rxjs/index'
-import {OverviewPage} from '../shared/interfaces'
-import {MaterialInstance, MaterialService} from '../shared/classes/material.service'
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AnalyticsService} from '../shared/services/analytics.service';
+import {Observable} from 'rxjs';
+import {OverviewPage} from '../shared/interfaces';
+import {MaterialInstance, MaterialService} from '../shared/classes/material.service';
 
 @Component({
   selector: 'app-overview-page',
@@ -11,31 +11,31 @@ import {MaterialInstance, MaterialService} from '../shared/classes/material.serv
 })
 export class OverviewPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('tapTarget') tapTargetRef: ElementRef
-  tapTarget: MaterialInstance
-  data$: Observable<OverviewPage>
+  @ViewChild('tapTarget') tapTargetRef: ElementRef;
+  tapTarget: MaterialInstance;
+  data$: Observable<OverviewPage>;
 
-  yesterday = new Date()
+  yesterday = new Date();
 
   constructor(private service: AnalyticsService) {
   }
 
   ngOnInit() {
-    this.data$ = this.service.getOverview()
+    this.data$ = this.service.getOverview();
 
-    this.yesterday.setDate(this.yesterday.getDate() - 1)
+    this.yesterday.setDate(this.yesterday.getDate() - 1);
   }
 
   ngAfterViewInit() {
-    this.tapTarget = MaterialService.initTapTarget(this.tapTargetRef)
+    this.tapTarget = MaterialService.initTapTarget(this.tapTargetRef);
   }
 
   ngOnDestroy() {
-    this.tapTarget.destroy()
+    this.tapTarget.destroy();
   }
 
   openInfo() {
-    this.tapTarget.open()
+    this.tapTarget.open();
   }
 
 }
