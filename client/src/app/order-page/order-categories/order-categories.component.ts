@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core'
-import {CategoriesService} from '../../shared/services/categories.service'
-import {Observable} from 'rxjs/index'
-import {Category} from '../../shared/interfaces'
+import {Component, OnInit} from '@angular/core';
+import {CategoriesService} from '../../shared/services/categories.service';
+import {Observable} from 'rxjs/index';
+import {Category} from '../../shared/interfaces';
 
 @Component({
   selector: 'app-order-categories',
@@ -10,13 +10,13 @@ import {Category} from '../../shared/interfaces'
 })
 export class OrderCategoriesComponent implements OnInit {
 
-  categories$: Observable<Category[]>
+  categories$: Observable<Category[]>;
 
   constructor(private categoriesService: CategoriesService) {
   }
 
   ngOnInit() {
-    this.categories$ = this.categoriesService.fetch()
+    this.categories$ = this.categoriesService.fetch();
   }
 
 }

@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core'
-import {ActivatedRoute, Params} from '@angular/router'
-import {PositionsService} from '../../shared/services/positions.service'
-import {Observable} from 'rxjs/index'
-import {Position} from '../../shared/interfaces'
-import {switchMap, map} from 'rxjs/operators'
-import {OrderService} from '../order.service'
-import {MaterialService} from '../../shared/classes/material.service'
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {PositionsService} from '../../shared/services/positions.service';
+import {Observable} from 'rxjs';
+import {Position} from '../../shared/interfaces';
+import {switchMap, map} from 'rxjs/operators';
+import {OrderService} from '../order.service';
+import {MaterialService} from '../../shared/classes/material.service';
 
 @Component({
   selector: 'app-order-positions',
@@ -14,7 +14,7 @@ import {MaterialService} from '../../shared/classes/material.service'
 })
 export class OrderPositionsComponent implements OnInit {
 
-  positions$: Observable<Position[]>
+  positions$: Observable<Position[]>;
 
   constructor(private route: ActivatedRoute,
               private positionsService: PositionsService,
@@ -26,23 +26,23 @@ export class OrderPositionsComponent implements OnInit {
       .pipe(
         switchMap(
           (params: Params) => {
-            return this.positionsService.fetch(params['id'])
+            return this.positionsService.fetch(params['id']);
           }
         ),
         map(
           (positions: Position[]) => {
             return positions.map(position => {
-              position.quantity = 1
-              return position
-            })
+              position.quantity = 1;
+              return position;
+            });
           }
         )
-      )
+      );
   }
 
   addToOrder(position: Position) {
-    MaterialService.toast(`Добавлено x${position.quantity}`)
-    this.order.add(position)
+    MaterialService.toast(`Добавлено x${position.quantity}`);
+    this.order.add(position);
   }
 
 }
